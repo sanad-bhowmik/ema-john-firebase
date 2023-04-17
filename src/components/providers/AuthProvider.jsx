@@ -3,42 +3,46 @@ import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWith
 import app from '../../firebase/firebase.config';
 
 export const AuthContext = createContext(null);
-const auth = getAuth(app)
 
-const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null)
-    const [loading, setLoading] = useState(true)
+const auth = getAuth(app);
+
+const AuthProvider = ({children}) => {
+    const [user, setUser ] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     const createUser = (email, password) => {
-        return createUserWithEmailAndPassword(auth, email, password)
+        setLoading(true);
+        return createUserWithEmailAndPassword(auth, email, password);
     }
-    // signin
-    const singIn = (email, password) => {
+
+    const signIn = (email, password) => {
+        setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
     }
-
-    // logoout
-    const logOut = () => {
-        return signOut(auth)
+    
+    const logOut = () =>{
+        return signOut(auth);
     }
 
-    // observe user auth
-    useEffect(() => {
+    // observer user auth state 
+    useEffect( ()=>{
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
             setLoading(false);
         });
-        return () => {
+
+        // stop observing while unmounting 
+        return () =>{
             return unsubscribe();
         }
     }, [])
 
     const authInfo = {
         user,
+        loading,
         createUser,
-        singIn,
-        logOut,
-        loading
+        signIn,
+        logOut
     }
 
     return (

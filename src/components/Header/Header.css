@@ -23,3 +23,14 @@ nav.header a:hover {
     padding-left: 10px;
     color: rgb(255, 255, 255);
 }
+
+.avatar {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.user-info{
+    padding-right: 3%;
+}
