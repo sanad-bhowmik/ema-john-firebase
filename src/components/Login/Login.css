@@ -50,6 +50,7 @@
     font-size: 21px;
     line-height: 25px;
     letter-spacing: 0.0015em;
+    cursor: pointer;
     color: #0E161A;
 }
 
@@ -57,7 +58,7 @@
     background: rgba(255, 153, 0, 0.6);
 }
 
-#email {
+.email {
     color: aliceblue;
 }
 .form-container {

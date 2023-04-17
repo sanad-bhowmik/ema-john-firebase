@@ -10,6 +10,9 @@
     border-right: 1px solid gray;
 }
 
-#email {
+.email {
    color: aliceblue;
+}
+.text-error{
+    color: red;
 }
