@@ -1,28 +1,28 @@
 import React, { useContext } from 'react';
 import './Login.css'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../providers/AuthProvider';
 
 const Login = () => {
-    const {singIn} = useContext(AuthContext);
+    const { singIn } = useContext(AuthContext);
     const navigate = useNavigate();
+    // console.log(location);
 
-    const handleLogin =event =>{
+    const handleLogin = event => {
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email,password);
-        singIn(email,password)
-        .then(result => {
-            const loggedUser = result.user;
-            console.log(loggedUser);
-            form.reset();
-            navigate('/')
-        })
-        .catch(error => {
-            console.log(error);
-        })
+        console.log(email, password);
+        singIn(email, password)
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                form.reset();
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
     return (
         <div className='form-container'>
